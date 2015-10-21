@@ -213,7 +213,7 @@ void display() {
     
     //Tetera
     glPushMatrix();
-    glTranslatef((screenWidth - 80), 50, -50);
+    glTranslatef((screenWidth - 80), 50, -80);
     glPushMatrix();
     glRotatef(angle*2, 1.0, 1.0, 1.0);
     glScalef(1, -1, 1);
