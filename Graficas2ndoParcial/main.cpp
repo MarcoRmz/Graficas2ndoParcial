@@ -211,19 +211,18 @@ void display() {
     //Autor
     drawText("Marco Ramirez and Ricardo Canales",screenWidth * 0.08,screenHeight * 0.92, 0.3);
     
-    //Tetera
-    glPushMatrix();
-    glTranslatef((screenWidth - 80), 50, -80);
-    glPushMatrix();
-    glRotatef(angle*2, 1.0, 1.0, 1.0);
-    glScalef(1, -1, 1);
-    glColor3f(1, 0.2, 0.5);
-    glutWireTeapot(screenHeight * 0.1);
-    glPopMatrix();
-    glPopMatrix();
-    
     //Si existe juego
     if (inProgress) {
+        //Tetera Hit stand
+        glPushMatrix();
+        glTranslatef((screenWidth - 80), 50, -80);
+        glPushMatrix();
+        glRotatef(angle*2, 1.0, 1.0, 1.0);
+        glScalef(1, -1, 1);
+        glColor3f(1, 0.2, 0.5);
+        glutWireTeapot(screenHeight * 0.1);
+        glPopMatrix();
+        glPopMatrix();
         glColor3f(1,1,0);
         drawText("Hit or Stand?",screenWidth * 0.54,screenHeight * 0.15, 0.4);
         glColor3f(1,0,0);
@@ -248,6 +247,16 @@ void display() {
         inProgress = false;
         glColor3f(0.01176470588,0.3019607843,0.6784313725);
         glRectf(screenWidth * 0.07, screenHeight * 0.615,screenWidth * 0.91, screenHeight * 0.55);
+        //Tetera
+        glPushMatrix();
+        glTranslatef((screenWidth - 80), 50, -80);
+        glPushMatrix();
+        glRotatef(angle*2, 1.0, 1.0, 1.0);
+        glScalef(1, -1, 1);
+        glColor3f(0.2, 0.8, 0.5);
+        glutWireTeapot(screenHeight * 0.1);
+        glPopMatrix();
+        glPopMatrix();
         glColor3f(0,1,1);
         drawText("New Deal?",screenWidth * 0.54,screenHeight * 0.15, 0.4);
         glColor3f(1,1,1);
@@ -260,6 +269,16 @@ void display() {
         inProgress = false;
         glColor3f(1,0,0);
         glRectf(screenWidth * 0.07, screenHeight * 0.615,screenWidth * 0.91, screenHeight * 0.55);
+        //Tetera
+        glPushMatrix();
+        glTranslatef((screenWidth - 80), 50, -80);
+        glPushMatrix();
+        glRotatef(angle*2, 1.0, 1.0, 1.0);
+        glScalef(1, -1, 1);
+        glColor3f(0.2, 0.8, 0.5);
+        glutWireTeapot(screenHeight * 0.1);
+        glPopMatrix();
+        glPopMatrix();
         glColor3f(0,1,1);
         drawText("New Deal?",screenWidth * 0.54,screenHeight * 0.15, 0.4);
         glColor3f(1,1,1);
