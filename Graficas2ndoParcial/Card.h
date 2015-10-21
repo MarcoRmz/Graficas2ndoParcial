@@ -22,7 +22,7 @@ class Card
 {
 public:
     // Constructor
-     Card(char ss, char vv);
+    Card(char ss, char vv);
     
     // metodos modificadores
     void setSuit(char ss);
@@ -76,7 +76,7 @@ void Card::muestra()
     cout << s << ":" << v << endl;
 }
 
- void Card::dibujaPoligono(int xMin, int xMax, int yMin, int yMax)
+void Card::dibujaPoligono(int xMin, int xMax, int yMin, int yMax)
 {
     glBegin(GL_POLYGON);
     glVertex2d( xMin,yMin);
@@ -94,8 +94,7 @@ void Card::draw(int x, int y)
     glColor3ub(0, 0, 255);
     dibujaPoligono(x, x+50, y, y+100);
     
-    
-    }
+}
 
 #endif
 

@@ -17,7 +17,7 @@ class Hand
 {
 public:
     Hand();
- 
+    
     char getSuit(int k); //Retorna el suit de la carta
     char getValue(int k);//retorna el valor de la carta k de
     char * str(); //retorna en todas las cartas de la mano
@@ -25,7 +25,7 @@ public:
     int getSum();//retorna el valor total de puntos de la mano
     void draw(int y, int screenWidth, int screenHeight, int cardWidth, int cardHeight);//dibuja todas las cartas desde la posición x,y, dependiendo de la cantidad de cartas
     int getNumCards();
-
+    
 private:
     vector<Card> hand={
         Card('z','z'), Card('z','z'),
@@ -87,50 +87,50 @@ int Hand::getSum() {
             sum += (value - '0');
         }
         /*
-        switch (hand[x].getValue()) {
-            case 'A':
-                numA++;
-                break;
-            case '2':
-                sum += 2;
-                break;
-            case '3':
-                sum += 3;
-                break;
-            case '4':
-                sum += 4;
-                break;
-            case '5':
-                sum += 5;
-                break;
-            case '6':
-                sum += 6;
-                break;
-            case '7':
-                sum += 7;
-                break;
-            case '8':
-                sum += 8;
-                break;
-            case '9':
-                sum += 9;
-                break;
-            case 'T':
-                sum += 10;
-                break;
-            case 'J':
-                sum += 10;
-                break;
-            case 'Q':
-                sum += 10;
-                break;
-            case 'K':
-                sum += 10;
-                break;
-                
-            default:
-                break;
-        } */
+         switch (hand[x].getValue()) {
+         case 'A':
+         numA++;
+         break;
+         case '2':
+         sum += 2;
+         break;
+         case '3':
+         sum += 3;
+         break;
+         case '4':
+         sum += 4;
+         break;
+         case '5':
+         sum += 5;
+         break;
+         case '6':
+         sum += 6;
+         break;
+         case '7':
+         sum += 7;
+         break;
+         case '8':
+         sum += 8;
+         break;
+         case '9':
+         sum += 9;
+         break;
+         case 'T':
+         sum += 10;
+         break;
+         case 'J':
+         sum += 10;
+         break;
+         case 'Q':
+         sum += 10;
+         break;
+         case 'K':
+         sum += 10;
+         break;
+         
+         default:
+         break;
+         } */
     }
     
     while (numA > 0) {

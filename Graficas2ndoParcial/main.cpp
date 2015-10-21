@@ -17,7 +17,7 @@
 
 using namespace std;
 
-int screenWidth = 640, screenHeight = 420, gameZoneHeight = screenHeight * 0.8, textZoneHeight = screenHeight * 0.2, playerWins = 0, dealerWins = 0;
+int screenWidth = 640, screenHeight = 420, gameZoneHeight = screenHeight * 0.8, textZoneHeight = screenHeight * 0.2, playerWins = 0, dealerWins = 0, angle=0;
 double cardWidth = screenWidth/6.0, cardHeight = gameZoneHeight/2.0;
 
 Deck *deck;
@@ -128,50 +128,7 @@ void hit() {
     }
 }
 
-void stand() {
-    /*
-     if(player->getSum() > 21) {
-     //Player lost
-     lose = true;
-     dealerWins++;
-     inProgress = false;
-     cout << "You Lost!" << endl;
-     } else {
-     //Dealer's Turn
-     while(dealer->getSum() < player->getSum() && dealer->getSum() <= 21) {
-     dealer->addCard(deck->dealCard());
-     //Display new card and values
-     glutPostRedisplay();
-     cout << "Dealer hand: ";
-     for (int i = 0; i < dealer->getNumCards(); ++i) {
-     cout << dealer->getSuit(i) << dealer->getValue(i) << " ";
-     }
-     cout << endl;
-     cout << "Dealer sum: " << dealer->getSum() << endl;
-     }
-     glFlush();
-     if (dealer->getSum() > 21) {
-     //Dealer Lost
-     win = true;
-     playerWins++;
-     inProgress = false;
-     cout << "You Win!" << endl;
-     } else if (dealer->getSum() > player->getSum()) {
-     //Player lost
-     lose = true;
-     dealerWins++;
-     inProgress = false;
-     cout << "You Lost!" << endl;
-     } else if (dealer->getSum() == player->getSum()) {
-     //Player lost
-     lose = true;
-     dealerWins++;
-     inProgress = false;
-     cout << "You Lost!" << endl;
-     }
-     }
-     */
-    
+void stand() {    
     //Dealer's Turn
     while(dealer->getSum() < player->getSum() && dealer->getSum() <= 17) {
         dealer->addCard(deck->dealCard());
@@ -209,11 +166,14 @@ void stand() {
 void display() {
     
     //BKG Color
-    glClearColor(0.1803921569,0.6784313725,0.01176470588, 1);
+    glClearColor(0.2,1,0.2, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
     
     //BKG
+    glColor3f(0.2,1,0.2);
+    glColor3f(0.1803921569,0.6784313725,0.01176470588);
+    glRectf(20,20, screenWidth -20, screenHeight -20);
     
     //Tablero
     glColor3f(1,1,1);
@@ -242,6 +202,8 @@ void display() {
     
     //Pinta Letrero Gano/Perdio
     if(win) {
+        drawText("Points Dealer: " + to_string(dealer->getSum()),screenWidth * 0.68,screenHeight * 0.28, 0.4);
+        drawText("Points Player: " + to_string(player->getSum()),screenWidth * 0.68,screenHeight * 0.6, 0.4);
         dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight);
         player->draw((screenHeight * 0.3), screenWidth, screenHeight, cardWidth, cardHeight);
         inProgress = false;
@@ -251,6 +213,8 @@ void display() {
         drawText("New Deal?",screenWidth * 0.54,screenHeight * 0.15, 0.4);
         drawText("You won! You have " + to_string(playerWins) + " win(s) and " + to_string(dealerWins) + " loses!", screenWidth * 0.1, screenHeight * 0.6, 0.4);
     } else if(lose) {
+        drawText("Points Dealer: " + to_string(dealer->getSum()),screenWidth * 0.68,screenHeight * 0.28, 0.4);
+        drawText("Points Player: " + to_string(player->getSum()),screenWidth * 0.68,screenHeight * 0.6, 0.4);
         dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight);
         player->draw((screenHeight * 0.3), screenWidth, screenHeight, cardWidth, cardHeight);
         inProgress = false;
@@ -311,16 +275,26 @@ void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
     }
 }
 
+void myTimer(int v)
+{
+    angle=angle+1;
+    glutPostRedisplay();
+    glutTimerFunc(5, myTimer, 1);
+    
+}
+
 int main(int argc, char *argv[]) {
     srand(time(0));
     glutInit(&argc, argv);
     glutInitWindowSize(screenWidth,screenHeight);
     glutInitWindowPosition(100,100);
     //Double frame buffer
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE );
-    glutCreateWindow("Blackjack Marco Ramirez");
+    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+    glutCreateWindow("Blackjack");
+    //glEnable(GL_DEPTH_TEST);
     glutDisplayFunc(display);
     glutIdleFunc(display);
+    glutTimerFunc(5, myTimer, 1);
     glutReshapeFunc(reshape);
     glutKeyboardFunc(myKeyboard);
     glutMainLoop();

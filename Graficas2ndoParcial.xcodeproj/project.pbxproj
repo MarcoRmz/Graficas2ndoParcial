@@ -29,9 +29,9 @@
 		A9BE06201BD7F4DE0000A78D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A9BE06271BD7F4E70000A78D /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		A9BE06291BD7F4EC0000A78D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		A9BE062B1BD7F5810000A78D /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
-		A9BE062C1BD7F5810000A78D /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
-		A9BE062D1BD7F5810000A78D /* Hand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hand.h; sourceTree = "<group>"; };
+		A9BE062E1BD7FA2F0000A78D /* Hand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hand.h; sourceTree = "<group>"; };
+		A9BE062F1BD7FA570000A78D /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		A9BE06301BD7FA6C0000A78D /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,10 +68,10 @@
 		A9BE061F1BD7F4DE0000A78D /* Graficas2ndoParcial */ = {
 			isa = PBXGroup;
 			children = (
-				A9BE062B1BD7F5810000A78D /* Card.h */,
-				A9BE062C1BD7F5810000A78D /* Deck.h */,
-				A9BE062D1BD7F5810000A78D /* Hand.h */,
 				A9BE06201BD7F4DE0000A78D /* main.cpp */,
+				A9BE062F1BD7FA570000A78D /* Card.h */,
+				A9BE06301BD7FA6C0000A78D /* Deck.h */,
+				A9BE062E1BD7FA2F0000A78D /* Hand.h */,
 			);
 			path = Graficas2ndoParcial;
 			sourceTree = "<group>";
