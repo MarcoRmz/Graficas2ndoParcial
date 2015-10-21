@@ -85,6 +85,8 @@ void Card::dibujaPoligono(int xMin, int xMax, int yMin, int yMax)
     glVertex2d( xMin,yMax);
     glEnd();
     
+    
+    
 }
 
 void Card::draw(int x, int y)
