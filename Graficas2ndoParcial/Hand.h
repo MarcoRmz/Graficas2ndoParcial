@@ -152,7 +152,7 @@ int Hand::getNumCards() {
 void drawCardNum(string text,int x,int y, float size, int screenWidth) {
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
-    glTranslatef(x, y, 2.0);
+    glTranslatef(x, y, -45.0);
     float scale = size * ((float)screenWidth / (screenWidth * 2.0));
     glScalef(scale, -scale, 1.0);
     for (int c=0; c < text.length(); c++) {
@@ -162,39 +162,48 @@ void drawCardNum(string text,int x,int y, float size, int screenWidth) {
 }
 
 void Hand::draw(int y, int screenWidth, int screenHeight, int cardWidth, int cardHeight) {
-    double x1 = (screenWidth * 0.15) + (cardWidth * 0.5), x2 = (screenWidth * 0.2) + (cardWidth * 0.65);
-    double y1 = (screenHeight * 0.4) + y, y2 = cardHeight + y;
+    double cW = cardWidth / 2.8;
+    double cH = cardHeight ;
+    
+    double x1 = (screenWidth * 0.15) + (cW * 0.5), x2 = (screenWidth * 0.2) + (cW * 0.65);
+    double y1 = (screenHeight * 0.4) + y, y2 = cH + y;
     string cardText = "";
     char s;
     char v;
-    
+
+    printf("CW: %f \n", cW);
+
+
     for (int x = 0; x < cont; x++) {
         cardText = "";
-        glColor3f(1,1,1);
         // glRectf(x1,y1, x2, y2);
 //        printf("COORDS: %f %f \n", x1, y1);
         //hand
+
+        
         glPushMatrix();
 
-        glTranslatef(x1, y1, 1.0);
-        glRotatef (0.0, 0.0, 0.0, 1.0);
-        glTranslatef (0.5, 0.0, 0.0);
+        glTranslatef(x1, y1, -30.0);
+        glRotatef (-20.0, 0.0, 1.0, 0.0);
+        glRotatef (5.0, 1.0, 0.0, 0.0);
+//        glTranslatef (0.5, 0.0, 0.0);
         
         glPushMatrix();
         //    glColor3f(0, 1, 0);
-        glScalef (60.0, 80.0, 1.0);
+        glScalef (cW, cH, 20.0);
         glColor3f(1, 1, 1);
         glutSolidCube(1.0);
         
         glColor3f(0, 0, 0);
         glutWireCube (1.0);
         glPopMatrix();
+        
         glPopMatrix();
+
         //hand -end
         
-        
-        x1 += (cardWidth * 0.5);
-        x2 += (cardWidth * 0.5);
+        x1 += (cW * 1.2);
+        x2 += (cW * 1.2);
         
         // pinta numero
         glColor3f(0,0,0);
@@ -203,7 +212,8 @@ void Hand::draw(int y, int screenWidth, int screenHeight, int cardWidth, int car
         cardText = s;
         cardText += v;
         //cout << "carta: "<<cardText << endl;
-        drawCardNum(cardText, x1 - (cardWidth * 0.5), y1, 0.7, screenWidth);
+        drawCardNum(cardText, x1 - (cW * 1.5), y1, 0.5, screenWidth);
+        
 
 
     }

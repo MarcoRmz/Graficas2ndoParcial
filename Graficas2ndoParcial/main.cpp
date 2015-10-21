@@ -41,14 +41,21 @@ void reshape(int w,int h) {
     glViewport(0,0,w,h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluOrtho2D(0,w,h,0);
+    
+    
+//     gluOrtho2D(0,w,h,0);
+    glOrtho(0.0, w, h, 0.0, 0.0, 100.0);
+    
+
+
     screenHeight = h;
     screenWidth = w;
     if(screenHeight < 350 || screenWidth < 400) gameZoneHeight = screenHeight;
     else gameZoneHeight = screenHeight * 0.8;
     cardWidth = screenWidth/4.0;
     cardHeight = gameZoneHeight/4.0;
-    glutPostRedisplay();
+
+//    glutPostRedisplay();
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
@@ -165,9 +172,11 @@ void stand() {
 
 void display() {
     
+    glLineWidth(2);
+    
     //BKG Color
     glClearColor(0.2,1,0.2, 1);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     
     //BKG
@@ -291,7 +300,12 @@ int main(int argc, char *argv[]) {
     //Double frame buffer
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
     glutCreateWindow("Blackjack");
-    //glEnable(GL_DEPTH_TEST);
+
+    
+    glClearColor (0.75, 0.75, 0.75, 0.0);
+    glShadeModel (GL_FLAT);
+//    glEnable(GL_DEPTH_TEST);
+    
     glutDisplayFunc(display);
     glutIdleFunc(display);
     glutTimerFunc(5, myTimer, 1);
