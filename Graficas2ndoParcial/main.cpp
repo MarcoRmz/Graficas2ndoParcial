@@ -197,6 +197,12 @@ void stand() {
         dealerWins++;
         inProgress = false;
         cout << "You Lost!" << endl;
+    } else {
+        //Player Won
+        win = true;
+        playerWins++;
+        inProgress = false;
+        cout << "You Win!" << endl;
     }
 }
 
@@ -207,6 +213,7 @@ void display() {
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
     
+    //BKG
     
     //Tablero
     glColor3f(1,1,1);
