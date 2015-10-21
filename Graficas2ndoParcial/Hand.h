@@ -152,7 +152,7 @@ int Hand::getNumCards() {
 void drawCardNum(string text,int x,int y, float size, int screenWidth) {
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
-    glTranslatef(x, y, 0.0);
+    glTranslatef(x, y, 2.0);
     float scale = size * ((float)screenWidth / (screenWidth * 2.0));
     glScalef(scale, -scale, 1.0);
     for (int c=0; c < text.length(); c++) {
@@ -171,7 +171,27 @@ void Hand::draw(int y, int screenWidth, int screenHeight, int cardWidth, int car
     for (int x = 0; x < cont; x++) {
         cardText = "";
         glColor3f(1,1,1);
-        glRectf(x1,y1, x2, y2);
+        // glRectf(x1,y1, x2, y2);
+//        printf("COORDS: %f %f \n", x1, y1);
+        //hand
+        glPushMatrix();
+
+        glTranslatef(x1, y1, 1.0);
+        glRotatef (0.0, 0.0, 0.0, 1.0);
+        glTranslatef (0.5, 0.0, 0.0);
+        
+        glPushMatrix();
+        //    glColor3f(0, 1, 0);
+        glScalef (60.0, 80.0, 1.0);
+        glColor3f(1, 1, 1);
+        glutSolidCube(1.0);
+        
+        glColor3f(0, 0, 0);
+        glutWireCube (1.0);
+        glPopMatrix();
+        glPopMatrix();
+        //hand -end
+        
         
         x1 += (cardWidth * 0.5);
         x2 += (cardWidth * 0.5);
@@ -184,6 +204,8 @@ void Hand::draw(int y, int screenWidth, int screenHeight, int cardWidth, int car
         cardText += v;
         //cout << "carta: "<<cardText << endl;
         drawCardNum(cardText, x1 - (cardWidth * 0.5), y1, 0.7, screenWidth);
+
+
     }
 }
 

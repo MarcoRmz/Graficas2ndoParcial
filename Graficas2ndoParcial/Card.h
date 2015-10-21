@@ -85,14 +85,17 @@ void Card::muestra()
     glVertex2d( xMin,yMax);
     glEnd();
     
+    
+    
 }
 
 void Card::draw(int x, int y)
 {
     glColor3ub(0, 0, 255);
     dibujaPoligono(x, x+50, y, y+100);
-
-}
+    
+    
+    }
 
 #endif
 
