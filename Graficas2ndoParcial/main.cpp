@@ -2,7 +2,7 @@
 //  main.cpp
 //  BlackJack
 //
-//  Created by Marco Ramirez on 9/17/15.
+//  Created by Marco Ramirez and Ricardo Canales on 9/17/15.
 //  Copyright (c) 2015 Ma. Guadalupe Roque. All rights reserved.
 //
 
@@ -209,7 +209,7 @@ void display() {
     drawText("'Esc': Salir",screenWidth * 0.4575,screenHeight * 0.97, 0.3);
     
     //Autor
-    drawText("Autor: Marco Antonio Ramirez Alarcon : A01191344",screenWidth * 0.08,screenHeight * 0.92, 0.3);
+    drawText("Marco Ramirez and Ricardo Canales",screenWidth * 0.08,screenHeight * 0.92, 0.3);
     
     //Tetera
     glPushMatrix();
