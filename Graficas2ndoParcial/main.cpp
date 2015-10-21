@@ -232,8 +232,8 @@ void display() {
         drawText("Points Player: " + to_string(player->getSum()),screenWidth * 0.68,screenHeight * 0.6, 0.4);
         glColor3f(1,1,1);
         // pinta Cartas
-        dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight);
-        player->draw((screenHeight * 0.3), screenWidth, screenHeight, cardWidth, cardHeight);
+        dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight, angle);
+        player->draw((screenHeight * 0.3), screenWidth, screenHeight, cardWidth, cardHeight, angle);
     }
     
     //Pinta Letrero Gano/Perdio
@@ -243,8 +243,8 @@ void display() {
         glColor3f(0,0,1);
         drawText("Points Player: " + to_string(player->getSum()),screenWidth * 0.68,screenHeight * 0.6, 0.4);
         glColor3f(1,1,1);
-        dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight);
-        player->draw((screenHeight * 0.3), screenWidth, screenHeight, cardWidth, cardHeight);
+        dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight, angle);
+        player->draw((screenHeight * 0.3), screenWidth, screenHeight, cardWidth, cardHeight, angle);
         inProgress = false;
         glColor3f(0.01176470588,0.3019607843,0.6784313725);
         glRectf(screenWidth * 0.07, screenHeight * 0.615,screenWidth * 0.91, screenHeight * 0.55);
@@ -255,8 +255,8 @@ void display() {
     } else if(lose) {
         drawText("Points Dealer: " + to_string(dealer->getSum()),screenWidth * 0.68,screenHeight * 0.28, 0.4);
         drawText("Points Player: " + to_string(player->getSum()),screenWidth * 0.68,screenHeight * 0.6, 0.4);
-        dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight);
-        player->draw((screenHeight * 0.3), screenWidth, screenHeight, cardWidth, cardHeight);
+        dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight, angle);
+        player->draw((screenHeight * 0.3), screenWidth, screenHeight, cardWidth, cardHeight, angle);
         inProgress = false;
         glColor3f(1,0,0);
         glRectf(screenWidth * 0.07, screenHeight * 0.615,screenWidth * 0.91, screenHeight * 0.55);

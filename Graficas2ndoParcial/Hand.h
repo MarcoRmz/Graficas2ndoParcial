@@ -23,7 +23,7 @@ public:
     char * str(); //retorna en todas las cartas de la mano
     void addCard(Card card); //añade una carta a la mano de cartas
     int getSum();//retorna el valor total de puntos de la mano
-    void draw(int y, int screenWidth, int screenHeight, int cardWidth, int cardHeight);//dibuja todas las cartas desde la posición x,y, dependiendo de la cantidad de cartas
+    void draw(int y, int screenWidth, int screenHeight, int cardWidth, int , double angle);//dibuja todas las cartas desde la posición x,y, dependiendo de la cantidad de cartas
     int getNumCards();
     
 private:
@@ -161,7 +161,7 @@ void drawCardNum(string text,int x,int y, float size, int screenWidth) {
     glPopMatrix();
 }
 
-void Hand::draw(int y, int screenWidth, int screenHeight, int cardWidth, int cardHeight) {
+void Hand::draw(int y, int screenWidth, int screenHeight, int cardWidth, int cardHeight, double angle) {
     double cW = cardWidth / 2.8;
     double cH = cardHeight ;
     
@@ -183,9 +183,9 @@ void Hand::draw(int y, int screenWidth, int screenHeight, int cardWidth, int car
         
         glPushMatrix();
 
-        glTranslatef(x1, y1, -30.0);
-        glRotatef (-20.0, 0.0, 1.0, 0.0);
-        glRotatef (5.0, 1.0, 0.0, 0.0);
+        glTranslatef(x1, y1, -50.0);
+        glRotatef (angle - 15.0, 0.0, 1.0, 0.0);
+        glRotatef (-10.0, 1.0, 0.0, 0.0);
 //        glTranslatef (0.5, 0.0, 0.0);
         
         glPushMatrix();
