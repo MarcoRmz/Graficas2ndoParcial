@@ -44,7 +44,7 @@ private:
         Card('D','7'), Card('D','8'), Card('D','9'), Card('D','T'),Card('D','J'),
         Card('D','Q'), Card('D','K')
     };
-   
+    
 };
 
 //Clubs (♣) Spades (♠), Hearts (♥), Diamonds (♦) //string SUITS ="CSHD";
