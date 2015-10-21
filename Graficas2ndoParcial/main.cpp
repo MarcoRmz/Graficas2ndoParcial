@@ -179,7 +179,7 @@ void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     
-    //BKG
+    //Animated BKG
     glPushMatrix();
     glTranslatef(screenWidth/2, screenHeight/2, 0.0);
     glPushMatrix();
@@ -210,6 +210,17 @@ void display() {
     
     //Autor
     drawText("Autor: Marco Antonio Ramirez Alarcon : A01191344",screenWidth * 0.08,screenHeight * 0.92, 0.3);
+    
+    //Tetera
+    glPushMatrix();
+    glTranslatef((screenWidth - 80), 50, -50);
+    glPushMatrix();
+    glRotatef(angle*2, 1.0, 1.0, 1.0);
+    glScalef(1, -1, 1);
+    glColor3f(1, 0.2, 0.5);
+    glutWireTeapot(screenHeight * 0.1);
+    glPopMatrix();
+    glPopMatrix();
     
     //Si existe juego
     if (inProgress) {
@@ -313,7 +324,7 @@ void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
 }
 
 void myTimer(int v) {
-    if (angle < 360) {
+    if (angle < 180) {
         angle=angle+10;
     }
     
