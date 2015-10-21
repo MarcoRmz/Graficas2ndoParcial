@@ -242,6 +242,8 @@ void display() {
     
     //Pinta Letrero Gano/Perdio
     if(win) {
+        drawText("Points Dealer: " + to_string(dealer->getSum()),screenWidth * 0.68,screenHeight * 0.28, 0.4);
+        drawText("Points Player: " + to_string(player->getSum()),screenWidth * 0.68,screenHeight * 0.6, 0.4);
         dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight);
         player->draw((screenHeight * 0.3), screenWidth, screenHeight, cardWidth, cardHeight);
         inProgress = false;
@@ -251,6 +253,8 @@ void display() {
         drawText("New Deal?",screenWidth * 0.54,screenHeight * 0.15, 0.4);
         drawText("You won! You have " + to_string(playerWins) + " win(s) and " + to_string(dealerWins) + " loses!", screenWidth * 0.1, screenHeight * 0.6, 0.4);
     } else if(lose) {
+        drawText("Points Dealer: " + to_string(dealer->getSum()),screenWidth * 0.68,screenHeight * 0.28, 0.4);
+        drawText("Points Player: " + to_string(player->getSum()),screenWidth * 0.68,screenHeight * 0.6, 0.4);
         dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight);
         player->draw((screenHeight * 0.3), screenWidth, screenHeight, cardWidth, cardHeight);
         inProgress = false;
