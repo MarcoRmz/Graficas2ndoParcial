@@ -181,6 +181,10 @@ void display() {
     glPopMatrix();
     glPopMatrix();
     
+    //Titulo Blackjack
+    glColor3f(0,0,0);
+    drawText("Blackjack",25,25, 0.5);
+    
     //Tablero
     glColor3f(1,0,0);
     drawText("Dealer:",screenWidth * 0.04,screenHeight * 0.25, 0.8);
@@ -200,6 +204,7 @@ void display() {
     
     //Si existe juego
     if (inProgress) {
+        glColor3f(1,1,0);
         drawText("Hit or Stand?",screenWidth * 0.54,screenHeight * 0.15, 0.4);
         glColor3f(1,0,0);
         drawText("Points Dealer: " + to_string(dealer->getSum()),screenWidth * 0.68,screenHeight * 0.28, 0.4);
@@ -223,8 +228,9 @@ void display() {
         inProgress = false;
         glColor3f(0.01176470588,0.3019607843,0.6784313725);
         glRectf(screenWidth * 0.07, screenHeight * 0.615,screenWidth * 0.91, screenHeight * 0.55);
-        glColor3f(1,1,1);
+        glColor3f(0,1,1);
         drawText("New Deal?",screenWidth * 0.54,screenHeight * 0.15, 0.4);
+        glColor3f(1,1,1);
         drawText("You won! You have " + to_string(playerWins) + " win(s) and " + to_string(dealerWins) + " loses!", screenWidth * 0.1, screenHeight * 0.6, 0.4);
     } else if(lose) {
         drawText("Points Dealer: " + to_string(dealer->getSum()),screenWidth * 0.68,screenHeight * 0.28, 0.4);
@@ -234,8 +240,9 @@ void display() {
         inProgress = false;
         glColor3f(1,0,0);
         glRectf(screenWidth * 0.07, screenHeight * 0.615,screenWidth * 0.91, screenHeight * 0.55);
-        glColor3f(1,1,1);
+        glColor3f(0,1,1);
         drawText("New Deal?",screenWidth * 0.54,screenHeight * 0.15, 0.4);
+        glColor3f(1,1,1);
         drawText("You Lost! You have " + to_string(playerWins) + " win(s) and " + to_string(dealerWins) + " loses!", screenWidth * 0.1, screenHeight * 0.6, 0.4);
     }
     
