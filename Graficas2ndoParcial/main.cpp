@@ -213,10 +213,12 @@ void display() {
     
     //Tetera
     glPushMatrix();
-    glTranslatef(130, 130, -50);
+    glTranslatef((screenWidth - 80), 50, -50);
     glPushMatrix();
-    //glScalef(1, -1, 0);
-    glutSolidTeapot(120);
+    glRotatef(angle*2, 1.0, 1.0, 1.0);
+    glScalef(1, -1, 1);
+    glColor3f(1, 0.2, 0.5);
+    glutWireTeapot(screenHeight * 0.1);
     glPopMatrix();
     glPopMatrix();
     
