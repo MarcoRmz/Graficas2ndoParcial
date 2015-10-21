@@ -17,8 +17,8 @@
 
 using namespace std;
 
-int screenWidth = 640, screenHeight = 420, gameZoneHeight = screenHeight * 0.8, textZoneHeight = screenHeight * 0.2, playerWins = 0, dealerWins = 0, angle=0;
-double cardWidth = screenWidth/6.0, cardHeight = gameZoneHeight/2.0;
+int screenWidth = 640, screenHeight = 420, gameZoneHeight = screenHeight * 0.8, textZoneHeight = screenHeight * 0.2, playerWins = 0, dealerWins = 0;
+double cardWidth = screenWidth/6.0, cardHeight = gameZoneHeight/2.0, angle=0;
 
 Deck *deck;
 Hand *player, *dealer;
@@ -171,9 +171,15 @@ void display() {
     glLoadIdentity();
     
     //BKG
-    glColor3f(0.2,1,0.2);
+    glPushMatrix();
+    glTranslatef(screenWidth/2, screenHeight/2, 0.0);
+    glPushMatrix();
+    glRotatef(angle, 0.0, 0.0, 1.0);
+    glTranslatef(-(screenWidth/2), -(screenHeight/2), 0.0);
     glColor3f(0.1803921569,0.6784313725,0.01176470588);
     glRectf(20,20, screenWidth -20, screenHeight -20);
+    glPopMatrix();
+    glPopMatrix();
     
     //Tablero
     glColor3f(1,1,1);
@@ -224,9 +230,12 @@ void display() {
         drawText("New Deal?",screenWidth * 0.54,screenHeight * 0.15, 0.4);
         drawText("You Lost! You have " + to_string(playerWins) + " win(s) and " + to_string(dealerWins) + " loses!", screenWidth * 0.1, screenHeight * 0.6, 0.4);
     }
-    
     //Intercambia los frame buffers
     glutSwapBuffers();//ya tiene integrado el glFlush
+}
+
+void animate() {
+    angle = 0;
 }
 
 void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
@@ -234,6 +243,7 @@ void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
             //Deal
         case 'd':
         case 'D':
+            animate();
             if (inProgress) {
                 //Lost game
                 glutPostRedisplay();
@@ -256,6 +266,7 @@ void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
         case 'H':
             if (inProgress) {
                 hit();
+                animate();
             }
             break;
             
@@ -264,6 +275,7 @@ void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
         case 'S':
             if (inProgress) {
                 stand();
+                animate();
             }
             break;
             
@@ -275,9 +287,11 @@ void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
     }
 }
 
-void myTimer(int v)
-{
-    angle=angle+1;
+void myTimer(int v) {
+    if (angle < 360) {
+        angle=angle+20;
+    }
+    
     glutPostRedisplay();
     glutTimerFunc(5, myTimer, 1);
     
