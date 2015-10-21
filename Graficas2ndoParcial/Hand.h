@@ -171,9 +171,6 @@ void Hand::draw(int y, int screenWidth, int screenHeight, int cardWidth, int car
     char s;
     char v;
 
-    printf("CW: %f \n", cW);
-
-
     for (int x = 0; x < cont; x++) {
         cardText = "";
         // glRectf(x1,y1, x2, y2);

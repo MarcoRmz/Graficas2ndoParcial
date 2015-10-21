@@ -24,6 +24,7 @@ Deck *deck;
 Hand *player, *dealer;
 
 bool inProgress = false, win = false, lose = false;
+bool newDeal = false;
 
 void drawText(std::string text,int x,int y, float size) {
     glPushMatrix();
@@ -267,8 +268,7 @@ void display() {
         dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight, angle);
         player->draw((screenHeight * 0.35), screenWidth, screenHeight, cardWidth, cardHeight, angle);
         inProgress = false;
-        glColor3f(1,0,0);
-        glRectf(screenWidth * 0.07, screenHeight * 0.615,screenWidth * 0.91, screenHeight * 0.55);
+        
         //Tetera
         glPushMatrix();
         glTranslatef((screenWidth - 80), 50, -80);
@@ -279,10 +279,19 @@ void display() {
         glutWireTeapot(screenHeight * 0.1);
         glPopMatrix();
         glPopMatrix();
+        
+        glColor3f(1,0,0);
+        glRectf(screenWidth * 0.07, screenHeight * 0.615,screenWidth * 0.91, screenHeight * 0.55);
         glColor3f(0,1,1);
         drawText("New Deal?",screenWidth * 0.54,screenHeight * 0.15, 0.4);
         glColor3f(1,1,1);
         drawText("You Lost! You have " + to_string(playerWins) + " win(s) and " + to_string(dealerWins) + " loses!", screenWidth * 0.1, screenHeight * 0.6, 0.4);
+    }
+    if (newDeal){
+        glColor3f(0.6,0.6,0.6);
+        glRectf(screenWidth * 0.20, screenHeight * 0.20,screenWidth * 0.80, screenHeight * 0.80);
+        glColor3f(0,1,1);
+        drawText("New Deal?",screenWidth * 0.30,screenHeight * 0.50, 0.8);
     }
     
     //Intercambia los frame buffers
@@ -312,7 +321,9 @@ void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
                  glColor3f(1,1,1);
                  drawText("You Lost! You have " + to_string(playerWins) + " win(s) and " + to_string(dealerWins) + " loses!", screenWidth * 0.1, screenHeight * 0.6, 0.4); */
                 inProgress = false;
+
             }
+            newDeal = false;
             deal();
             break;
             
@@ -322,6 +333,8 @@ void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
             if (inProgress) {
                 hit();
                 animate();
+            } else {
+                newDeal = true;
             }
             break;
             
@@ -331,6 +344,8 @@ void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
             if (inProgress) {
                 stand();
                 animate();
+            } else {
+                newDeal = true;
             }
             break;
             
