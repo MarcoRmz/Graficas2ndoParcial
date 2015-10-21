@@ -128,50 +128,7 @@ void hit() {
     }
 }
 
-void stand() {
-    /*
-     if(player->getSum() > 21) {
-     //Player lost
-     lose = true;
-     dealerWins++;
-     inProgress = false;
-     cout << "You Lost!" << endl;
-     } else {
-     //Dealer's Turn
-     while(dealer->getSum() < player->getSum() && dealer->getSum() <= 21) {
-     dealer->addCard(deck->dealCard());
-     //Display new card and values
-     glutPostRedisplay();
-     cout << "Dealer hand: ";
-     for (int i = 0; i < dealer->getNumCards(); ++i) {
-     cout << dealer->getSuit(i) << dealer->getValue(i) << " ";
-     }
-     cout << endl;
-     cout << "Dealer sum: " << dealer->getSum() << endl;
-     }
-     glFlush();
-     if (dealer->getSum() > 21) {
-     //Dealer Lost
-     win = true;
-     playerWins++;
-     inProgress = false;
-     cout << "You Win!" << endl;
-     } else if (dealer->getSum() > player->getSum()) {
-     //Player lost
-     lose = true;
-     dealerWins++;
-     inProgress = false;
-     cout << "You Lost!" << endl;
-     } else if (dealer->getSum() == player->getSum()) {
-     //Player lost
-     lose = true;
-     dealerWins++;
-     inProgress = false;
-     cout << "You Lost!" << endl;
-     }
-     }
-     */
-    
+void stand() {    
     //Dealer's Turn
     while(dealer->getSum() < player->getSum() && dealer->getSum() <= 17) {
         dealer->addCard(deck->dealCard());
