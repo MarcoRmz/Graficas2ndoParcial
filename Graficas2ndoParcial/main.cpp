@@ -17,8 +17,8 @@
 
 using namespace std;
 
-int screenWidth = 640, screenHeight = 420, gameZoneHeight = screenHeight * 0.8, textZoneHeight = screenHeight * 0.2, playerWins = 0, dealerWins = 0, angle=0;
-double cardWidth = screenWidth/6.0, cardHeight = gameZoneHeight/2.0;
+int screenWidth = 640, screenHeight = 420, gameZoneHeight = screenHeight * 0.8, textZoneHeight = screenHeight * 0.2, playerWins = 0, dealerWins = 0;
+double cardWidth = screenWidth/6.0, cardHeight = gameZoneHeight/2.0, angle=0;
 
 Deck *deck;
 Hand *player, *dealer;
@@ -180,14 +180,26 @@ void display() {
     glLoadIdentity();
     
     //BKG
-    glColor3f(0.2,1,0.2);
+    glPushMatrix();
+    glTranslatef(screenWidth/2, screenHeight/2, 0.0);
+    glPushMatrix();
+    glRotatef(angle, 0.0, 0.0, 1.0);
+    glTranslatef(-(screenWidth/2), -(screenHeight/2), 0.0);
     glColor3f(0.1803921569,0.6784313725,0.01176470588);
     glRectf(20,20, screenWidth -20, screenHeight -20);
+    glPopMatrix();
+    glPopMatrix();
+    
+    //Titulo Blackjack
+    glColor3f(0,0,0);
+    drawText("Blackjack",25,25, 0.5);
     
     //Tablero
-    glColor3f(1,1,1);
+    glColor3f(1,0,0);
     drawText("Dealer:",screenWidth * 0.04,screenHeight * 0.25, 0.8);
+    glColor3f(0,0,1);
     drawText("Player:",screenWidth * 0.04,screenHeight * 0.6, 0.8);
+    glColor3f(1,1,1);
     drawText("Score Dealer: " + to_string(dealerWins) + " Player: " + to_string(playerWins),screenWidth * 0.05,screenHeight * 0.12, 0.4);
     
     //Instrucciones
@@ -201,9 +213,13 @@ void display() {
     
     //Si existe juego
     if (inProgress) {
+        glColor3f(1,1,0);
         drawText("Hit or Stand?",screenWidth * 0.54,screenHeight * 0.15, 0.4);
+        glColor3f(1,0,0);
         drawText("Points Dealer: " + to_string(dealer->getSum()),screenWidth * 0.68,screenHeight * 0.28, 0.4);
+        glColor3f(0,0,1);
         drawText("Points Player: " + to_string(player->getSum()),screenWidth * 0.68,screenHeight * 0.6, 0.4);
+        glColor3f(1,1,1);
         // pinta Cartas
         dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight);
         player->draw((screenHeight * 0.3), screenWidth, screenHeight, cardWidth, cardHeight);
@@ -211,15 +227,19 @@ void display() {
     
     //Pinta Letrero Gano/Perdio
     if(win) {
+        glColor3f(1,0,0);
         drawText("Points Dealer: " + to_string(dealer->getSum()),screenWidth * 0.68,screenHeight * 0.28, 0.4);
+        glColor3f(0,0,1);
         drawText("Points Player: " + to_string(player->getSum()),screenWidth * 0.68,screenHeight * 0.6, 0.4);
+        glColor3f(1,1,1);
         dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight);
         player->draw((screenHeight * 0.3), screenWidth, screenHeight, cardWidth, cardHeight);
         inProgress = false;
         glColor3f(0.01176470588,0.3019607843,0.6784313725);
         glRectf(screenWidth * 0.07, screenHeight * 0.615,screenWidth * 0.91, screenHeight * 0.55);
-        glColor3f(1,1,1);
+        glColor3f(0,1,1);
         drawText("New Deal?",screenWidth * 0.54,screenHeight * 0.15, 0.4);
+        glColor3f(1,1,1);
         drawText("You won! You have " + to_string(playerWins) + " win(s) and " + to_string(dealerWins) + " loses!", screenWidth * 0.1, screenHeight * 0.6, 0.4);
     } else if(lose) {
         drawText("Points Dealer: " + to_string(dealer->getSum()),screenWidth * 0.68,screenHeight * 0.28, 0.4);
@@ -227,10 +247,11 @@ void display() {
         dealer->draw(0, screenWidth, screenHeight, cardWidth, cardHeight);
         player->draw((screenHeight * 0.3), screenWidth, screenHeight, cardWidth, cardHeight);
         inProgress = false;
-        glColor3f(0.01176470588,0.3019607843,0.6784313725);
+        glColor3f(1,0,0);
         glRectf(screenWidth * 0.07, screenHeight * 0.615,screenWidth * 0.91, screenHeight * 0.55);
-        glColor3f(1,1,1);
+        glColor3f(0,1,1);
         drawText("New Deal?",screenWidth * 0.54,screenHeight * 0.15, 0.4);
+        glColor3f(1,1,1);
         drawText("You Lost! You have " + to_string(playerWins) + " win(s) and " + to_string(dealerWins) + " loses!", screenWidth * 0.1, screenHeight * 0.6, 0.4);
     }
     
@@ -238,11 +259,16 @@ void display() {
     glutSwapBuffers();//ya tiene integrado el glFlush
 }
 
+void animate() {
+    angle = 0;
+}
+
 void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
     switch (theKey) {
             //Deal
         case 'd':
         case 'D':
+            animate();
             if (inProgress) {
                 //Lost game
                 glutPostRedisplay();
@@ -265,6 +291,7 @@ void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
         case 'H':
             if (inProgress) {
                 hit();
+                animate();
             }
             break;
             
@@ -273,6 +300,7 @@ void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
         case 'S':
             if (inProgress) {
                 stand();
+                animate();
             }
             break;
             
@@ -284,9 +312,11 @@ void myKeyboard(unsigned char theKey, int mouseX, int mouseY) {
     }
 }
 
-void myTimer(int v)
-{
-    angle=angle+1;
+void myTimer(int v) {
+    if (angle < 360) {
+        angle=angle+10;
+    }
+    
     glutPostRedisplay();
     glutTimerFunc(5, myTimer, 1);
     
