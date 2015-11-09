@@ -7,3 +7,7 @@ Activity for Computer graphics class @Tec de Monterrey
 * Normal Blackjack rules
 * Player plays against computer
 * If there is a tie dealer wins
+
+# Team
+* Marco Ramírez
+* Ricardo Canales
